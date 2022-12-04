@@ -1,0 +1,12 @@
+include MANIFEST.in
+include README.md
+include requirements.txt
+
+recursive-include proyecto/static/*
+recursive-include proyecto/templates/*
+
+graft proyecto
+graft tests
+
+global-exclude __pycache__
+global-exclude *.py[co]
