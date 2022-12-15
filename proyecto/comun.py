@@ -78,7 +78,7 @@ def modificar_en_bd(tipo, df_lista, df_modif):
         )
         df_lista = df_lista.loc[df_lista["_merge"] == "left_only"].drop("_merge", axis=1)
         df_lista = pd.concat([df_lista, df_modif])
-        path_fichero = os.path.join('../extras', "listado_%s.%s" % (tipo, 'xlsx'))
+        path_fichero = os.path.join('../extras', "%s.%s" % (tipo, 'xlsx'))
         df_lista.to_excel(path_fichero, index=False)
     except GenericError as ge:
         print('Ha habido un error durante el borrado de nuevo objeto', ge)

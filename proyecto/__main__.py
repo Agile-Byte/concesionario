@@ -41,7 +41,10 @@ if __name__ == '__main__':
         if res_aviso:
             m1.pedir_material()
         # Se solicita la extracción de un producto
+        res_ingesta = r1.sacar_producto('Llave inglesa', 1)
+        res_ingesta = r1.sacar_producto('Tijeras', 2)
         res_ingesta = r1.sacar_producto('Casco', 2)
+        res_ingesta = r1.sacar_producto('Martillo', 1)
 
     except Exception as e:
         print('Ha habido un error inesperado: %s', e)
