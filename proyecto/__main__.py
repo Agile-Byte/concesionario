@@ -14,6 +14,7 @@ from proyecto.robot import Robot
 if __name__ == '__main__':
     try:
         # Se agrega un nuevo cliente
+        # Prueba
         cliente1 = Cliente('Juan', 'Costa', '14888652L', 55000)
         cliente1.añadir_cliente()
         # Se agrega un nuevo coche
