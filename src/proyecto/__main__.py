@@ -5,11 +5,11 @@
 import sys
 import traceback
 
-from proyecto.coche import Coche
-from proyecto.cliente import Cliente
-from proyecto.comun import generar_oferta
-from proyecto.mozo import Mozo
-from proyecto.robot import Robot
+from src.proyecto.coche import Coche
+from src.proyecto.cliente import Cliente
+from src.proyecto.comun import generar_oferta
+from src.proyecto.mozo import Mozo
+from src.proyecto.robot import Robot
 
 if __name__ == '__main__':
     try:
@@ -27,7 +27,7 @@ if __name__ == '__main__':
         # Se borra un coche
         coche1.borrar_coche()
         # Se genera una oferta
-        generar_oferta(cliente1)
+        generar_oferta(cliente1, '2023-11-26', 1)
 
         # Generacion proceso almacen
         m1 = Mozo()

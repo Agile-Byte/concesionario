@@ -4,15 +4,15 @@ import unittest
 from unittest import mock
 import pandas as pd
 
-from proyecto.robot import Robot
+from src.proyecto.robot import Robot
 from tests.utils import df_stock_productos, df_stock_productos_completo
 
 
 class TestRobot(unittest.TestCase):
     """Test Robot"""
 
-    @mock.patch("proyecto.robot.escribir_en_almacen")
-    @mock.patch("proyecto.robot.leer_de_bd")
+    @mock.patch("src.proyecto.robot.escribir_en_almacen")
+    @mock.patch("src.proyecto.robot.leer_de_bd")
     def test_inventario_material(self, mock_lectura, mock_escritura):
         from utils import df_albaran
         # Caso 1º: Se ha comprobado el inventario correctamente y ha emitido aviso
@@ -31,8 +31,8 @@ class TestRobot(unittest.TestCase):
         self.assertEqual(res_real, False)
         self.assertEqual(res_aviso, False)
 
-    @mock.patch("proyecto.robot.escribir_en_almacen")
-    @mock.patch("proyecto.robot.leer_de_bd")
+    @mock.patch("src.proyecto.robot.escribir_en_almacen")
+    @mock.patch("src.proyecto.robot.leer_de_bd")
     def test_sacar_producto(self, mock_lectura, mock_escritura):
         # Caso 1º: Se ha realizado la extraccion
         mock_lectura.return_value = pd.DataFrame(df_stock_productos)

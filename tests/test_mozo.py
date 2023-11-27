@@ -5,14 +5,14 @@ from unittest import mock
 import pandas as pd
 from pandas.testing import assert_frame_equal
 
-from proyecto.mozo import Mozo
+from src.proyecto.mozo import Mozo
 from tests.utils import df_albaran, df_albaran_neg, df_albaran_max, df_stock_productos
 
 
 class TestMozo(unittest.TestCase):
     """Test Mozo"""
 
-    @mock.patch("proyecto.mozo.leer_de_bd",
+    @mock.patch("src.proyecto.mozo.leer_de_bd",
                 side_effect=[pd.DataFrame(df_albaran), pd.DataFrame(df_stock_productos),
                              pd.DataFrame(df_albaran_neg), pd.DataFrame(df_stock_productos),
                              pd.DataFrame(df_albaran_max), pd.DataFrame(df_stock_productos)])
@@ -31,7 +31,7 @@ class TestMozo(unittest.TestCase):
         m2 = Mozo()
         self.assertRaises(Exception, m2.actualizar_inventario)
 
-    @mock.patch("proyecto.mozo.escribir_en_almacen")
+    @mock.patch("src.proyecto.mozo.escribir_en_almacen")
     def test_almacenar_material(self, mock_escritura):
         from utils import df_stock_expected
         # Caso 1: Se escribe correctamente el nuevo stock disponible
@@ -45,8 +45,8 @@ class TestMozo(unittest.TestCase):
         m2 = Mozo()
         self.assertRaises(Exception, m2.almacenar_material, pd.DataFrame(df_stock_expected))
 
-    @mock.patch("proyecto.mozo.escribir_en_almacen")
-    @mock.patch("proyecto.mozo.leer_de_bd")
+    @mock.patch("src.proyecto.mozo.escribir_en_almacen")
+    @mock.patch("src.proyecto.mozo.leer_de_bd")
     def test_pedir_material(self, mock_lectura, mock_escritura):
         from utils import df_stock_productos
         # Caso 1: Se genera una peticion con los materiales que se encuentran por debajo del umbral

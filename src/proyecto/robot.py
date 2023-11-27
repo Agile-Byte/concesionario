@@ -5,7 +5,7 @@ import traceback
 
 import pandas as pd
 
-from proyecto.comun import leer_de_bd, escribir_en_almacen, GenericError
+from src.proyecto.comun import leer_de_bd, escribir_en_almacen, GenericError
 
 
 class Robot(object):

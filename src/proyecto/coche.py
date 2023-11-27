@@ -2,7 +2,7 @@
 """Fichero Coche"""
 import pandas as pd
 
-from proyecto.comun import GenericError, leer_de_bd, escribir_en_bd, borrar_de_bd, comprobar_existencia
+from src.proyecto.comun import GenericError, leer_de_bd, escribir_en_bd, borrar_de_bd, comprobar_existencia
 
 
 class Coche(object):

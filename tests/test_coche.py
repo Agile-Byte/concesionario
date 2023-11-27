@@ -5,15 +5,15 @@ import unittest
 from unittest import mock
 import pandas as pd
 
-from proyecto.coche import Coche
+from src.proyecto.coche import Coche
 
 
 class TestCoche(unittest.TestCase):
     """Test Cliente"""
 
-    @mock.patch("proyecto.coche.escribir_en_bd")
-    @mock.patch("proyecto.coche.comprobar_existencia", side_effect=[False, True])
-    @mock.patch("proyecto.coche.leer_de_bd")
+    @mock.patch("src.proyecto.coche.escribir_en_bd")
+    @mock.patch("src.proyecto.coche.comprobar_existencia", side_effect=[False, True])
+    @mock.patch("src.proyecto.coche.leer_de_bd")
     def test_añadir_coche(self, mock_lectura, __, mock_escritura):
         from tests.utils import df_lista_coche
         # Caso 1º: Se ha añadido correctamente el coche
@@ -29,9 +29,9 @@ class TestCoche(unittest.TestCase):
         mock_lectura.return_value = pd.DataFrame(df_lista_coche)
         self.assertRaises(Exception, c2.añadir_coche)
 
-    @mock.patch("proyecto.coche.borrar_de_bd")
-    @mock.patch("proyecto.coche.comprobar_existencia", side_effect=[True, False])
-    @mock.patch("proyecto.coche.leer_de_bd")
+    @mock.patch("src.proyecto.coche.borrar_de_bd")
+    @mock.patch("src.proyecto.coche.comprobar_existencia", side_effect=[True, False])
+    @mock.patch("src.proyecto.coche.leer_de_bd")
     def test_borrar_coche(self, mock_lectura, __, mock_borrar):
         from tests.utils import df_lista_coche
         # Caso 1º: Se ha borrado correctamente el coche

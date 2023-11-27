@@ -1,8 +1,21 @@
+import pandas as pd
 df_clientes_existente = {
     'nombre': ['Pablo', 'Jorge', 'Pedro'],
     'apellido': ['Garcia', 'Jorge', 'Pedro'],
     'dni': ['12345678A', '55589965G', '24523698F'],
     'presupuesto': [15000, 25000, 100000]
+}
+df_cliente = {
+    'nombre': ['Pablo'],
+    'apellido': ['Garcia'],
+    'dni': ['12345678A'],
+    'presupuesto': [15000]
+}
+df_no_cliente = {
+    'nombre': ['Elena'],
+    'apellido': ['Perez'],
+    'dni': ['23455678A'],
+    'presupuesto': [19000]
 }
 df_clientes_no_existente = {
     'nombre': ['Alberto', 'Jorge', 'Pedro'],
@@ -51,4 +64,11 @@ df_stock_expected = {
     'Cantidad': [6, 2, 4],
     'Total': [15.0, 10.0, 10.0],
     'Porcentaje': [0.4, 0.2, 0.40]
+}
+df_promo = {
+    'cod_param': ["promo_clientes"],
+    'dat_alta': [pd.Timestamp('2000-01-01 00:00:00')],
+    'dat_baja': [pd.Timestamp('2040-01-01 00:00:00')],
+    'promo': [1],
+    'value': [0.35]
 }

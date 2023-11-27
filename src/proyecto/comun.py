@@ -100,13 +100,24 @@ def comprobar_existencia(df_listado, df_valor_comprobar):
         raise GenericError(ge)
 
 
-def generar_oferta(cliente1):
+def generar_oferta(cliente1, fecha=pd.Timestamp.today(), promo=0):
     # Leer lista de coches
     df_lista_coche = leer_de_bd('listado_coche')
+
+    if promo != 0:
+        df_promo = leer_de_bd('param_promo')
+        df_promo_aplicable = df_promo[(df_promo["dat_baja"] > fecha) &
+                              (df_promo["dat_alta"] < fecha) &
+                              (df_promo["promo"] == promo)]
+        df_lista_coche["promo"] = df_promo_aplicable["value"][0]
+        df_lista_coche["Precio"] = df_lista_coche["Precio"] * (1-df_lista_coche["promo"])
 
     # Filtar por precio
     df_lista_coche_filtrada = df_lista_coche[df_lista_coche['Precio'] <= cliente1.presupuesto]
 
-    path_fichero = os.path.join('../extras', "%s_%s_oferta.%s" % (cliente1.nombre, cliente1.apellido, 'xlsx'))
+    path_fichero = os.path.join('../extras', "%s_%s_oferta_v2.%s" % (cliente1.nombre, cliente1.apellido, 'xlsx'))
     df_lista_coche_filtrada.to_excel(path_fichero, index=False)
-    print("Se ha generado un fichero con los coches dentro del presupuesto del cliente")
+    if promo != 0:
+        print("Se ha generado un fichero con los coches dentro del presupuesto del cliente con promoción")
+    else:
+        print("Se ha generado un fichero con los coches dentro del presupuesto del cliente sin promoción")
