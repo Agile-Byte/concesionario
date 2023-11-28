@@ -38,21 +38,6 @@ def escribir_en_bd(tipo, df_lista_cliente, df_escribir):
         raise GenericError(ge)
 
 
-def escribir_en_almacen(tipo, df_stock_producto):
-    try:
-        path_fichero = os.path.join('../extras', "%s.%s" % (tipo, 'xlsx'))
-        existe_fichero = os.path.isfile(path_fichero)
-        if existe_fichero:
-            df_stock_producto.to_excel(path_fichero, index=False)
-            res_ingesta = True
-        else:
-            raise GenericError("Error, no existe el fichero a escribir")
-        return res_ingesta
-    except GenericError as ge:
-        print('Ha habido un error durante la escritura del nuevo stock disponible', ge)
-        raise GenericError(ge)
-
-
 def borrar_de_bd(tipo, df_borrar):
     try:
         path_fichero = os.path.join('../extras', "%s.%s" % (tipo, 'xlsx'))
@@ -82,6 +67,21 @@ def modificar_en_bd(tipo, df_lista, df_modif):
         df_lista.to_excel(path_fichero, index=False)
     except GenericError as ge:
         print('Ha habido un error durante el borrado de nuevo objeto', ge)
+        raise GenericError(ge)
+
+
+def escribir_en_almacen(tipo, df_stock_producto):
+    try:
+        path_fichero = os.path.join('../extras', "%s.%s" % (tipo, 'xlsx'))
+        existe_fichero = os.path.isfile(path_fichero)
+        if existe_fichero:
+            df_stock_producto.to_excel(path_fichero, index=False)
+            res_ingesta = True
+        else:
+            raise GenericError("Error, no existe el fichero a escribir")
+        return res_ingesta
+    except GenericError as ge:
+        print('Ha habido un error durante la escritura del nuevo stock disponible', ge)
         raise GenericError(ge)
 
 
