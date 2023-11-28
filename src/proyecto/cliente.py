@@ -2,7 +2,8 @@
 """Fichero Cliente"""
 import pandas as pd
 
-from src.proyecto.comun import GenericError, leer_de_bd, escribir_en_bd, borrar_de_bd, modificar_en_bd, comprobar_existencia
+from src.proyecto.comun import GenericError, leer_de_bd, escribir_en_bd, borrar_de_bd, modificar_en_bd, \
+    comprobar_existencia
 
 
 class Cliente(object):
