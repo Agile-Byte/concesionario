@@ -32,7 +32,9 @@ class Robot(object):
             df_producto_sacar = pd.DataFrame({'Producto': [tipo], 'Cantidad': [cantidad]})
             df_stock_disponible = leer_de_bd('stock_productos')
 
-            df_stock_actualizado = pd.merge(df_stock_disponible, df_producto_sacar, how='outer', on="Producto").fillna(0)
+            df_stock_actualizado = pd.merge(
+                df_stock_disponible, df_producto_sacar, how='outer', on="Producto"
+            ).fillna(0)
             df_stock_actualizado['Cantidad'] = df_stock_actualizado['Cantidad_x'] - df_stock_actualizado['Cantidad_y']
             df_stock_actualizado['Porcentaje'] = df_stock_actualizado['Cantidad'] / df_stock_actualizado['Total']
             df_stock_actualizado = df_stock_actualizado[['Producto', 'Precio', 'Cantidad', 'Total', 'Porcentaje']]
